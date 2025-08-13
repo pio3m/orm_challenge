@@ -117,7 +117,7 @@ Zapisz wynik — to będzie Twój punkt odniesienia.
   https://realpython.com/python-sqlalchemy/#working-with-core  
   Wprowadzenie do pracy z SQLAlchemy bez ORM. Budowanie zapytań `select()`, `where()`, `order_by()`, `text()` itd.
 
-## 🔎 Zadanie dodatkowe — samodzielne pogłębienie wiedzy
+## Samodzielne pogłębienie wiedzy
 
 Poszukaj samodzielnie informacji na poniższe tematy:
 
