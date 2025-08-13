@@ -4,9 +4,6 @@ from models.address import Address
 from models.order import Order
 from models.product import Product
 
-# Tworzymy tabele
-Base.metadata.create_all(engine)
-
 session = SessionLocal()
 
 # 1. Dodaj klienta i adres
@@ -24,8 +21,14 @@ order.products.extend([product1, product2])
 session.add(customer)  # zapisujemy całość
 session.commit()
 
+
+
+
+
 # Odczyt — pokaż wszystkie zamówienia Jana
 jan = session.query(Customer).filter_by(name="Jan Kowalski").first()
 
 for order in jan.orders:
     print(f"Zamówienie #{order.id}: {[p.name for p in order.products]}")
+
+
