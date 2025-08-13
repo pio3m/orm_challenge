@@ -1,2 +1,3 @@
 sqlalchemy
 psycopg[binary]
+Faker>=24.0
