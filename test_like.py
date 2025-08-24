@@ -1,6 +1,6 @@
 import time
-from database import SessionLocal
-import models 
+from python_database.kuba_orm_challenge.database import SessionLocal
+import models
 from models.customer import Customer
 
 session = SessionLocal()
@@ -8,8 +8,10 @@ session = SessionLocal()
 # Fraza do wyszukania
 term_contains = "Jan%"  # wiodący %, często wolniejsze
 
+
 def run_query(pattern):
     return session.query(Customer).filter(Customer.name.like(pattern)).all()
+
 
 # Pomiar czasu dla "%Jan%"
 t0 = time.perf_counter()
