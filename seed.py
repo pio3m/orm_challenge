@@ -2,19 +2,21 @@
 # Uruchom:  python seed.py
 
 from faker import Faker
-from database import engine, SessionLocal
-
+from database import engine, Session
 from models.customer import Customer
 from models.address import Address
 from models.order import Order
 from models.product import Product
 
-from database import SessionLocal
+from database import Session
 from sqlalchemy.exc import IntegrityError
 
 # Ile rekordów stworzyć (zmień swobodnie)
 N = int(2e5)  # 200 000
 BATCH = 1000  # Rozmiar partii do batch insertów
+
+session = Session()
+
 
 def seed_products(session):
     """Dodaj kilka przykładowych produktów (przyda się do późniejszych przykładów relacji)."""
@@ -26,6 +28,7 @@ def seed_products(session):
     ]
     session.add_all(base_products)
     session.commit()
+
 
 def seed_customers(session):
     """Wstaw dużą liczbę klientów; co kilkadziesiąt rekordów wymuś 'Jan ...' dla testów LIKE."""
@@ -62,8 +65,9 @@ def seed_customers(session):
         inserted += len(batch)
         print(f"Wstawiono {inserted}/{N}")
 
+
 def main():
-    with SessionLocal() as session:
+    with Session() as session:
 
         print("Dodawanie produktów (opcjonalne przykłady relacji)...")
         seed_products(session)
@@ -72,6 +76,7 @@ def main():
         seed_customers(session)
 
     print("Seed zakończony.")
+
 
 if __name__ == "__main__":
     main()

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, ForeignKey, Table
 from sqlalchemy.orm import relationship
-from database import Base
+from ..database import Base
 
 # Tabela asocjacyjna (N:M)
 order_product = Table(
@@ -10,6 +10,7 @@ order_product = Table(
     Column("product_id", ForeignKey("products.id"), primary_key=True)
 )
 
+
 class Order(Base):
     __tablename__ = "orders"
 
@@ -17,4 +18,5 @@ class Order(Base):
     customer_id = Column(Integer, ForeignKey("customers.id"))
 
     customer = relationship("Customer", back_populates="orders")
-    products = relationship("Product", secondary=order_product, back_populates="orders")
+    products = relationship(
+        "Product", secondary=order_product, back_populates="orders")
